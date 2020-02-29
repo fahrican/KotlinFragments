@@ -34,6 +34,9 @@ class MainActivity : AppCompatActivity() {
             true
         }
         drawer_layout.addDrawerListener(drawerToggle)
+
+        val pagerAdapter = ImageFragmentPagerAdapter(supportFragmentManager)
+        view_pager.adapter = pagerAdapter
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -64,18 +67,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun selectDrawerItem(item: MenuItem) {
-        var fragment: Fragment? = null
-        val fragmentClass = when (item.itemId) {
-            R.id.first_fragment_item -> FirstImageFragment::class.java
-            R.id.second_fragment_item -> SecondImageFragment::class.java
-            else -> FirstImageFragment::class.java
+        when (item.itemId) {
+            R.id.first_fragment_item -> view_pager.currentItem = 0
+            R.id.second_fragment_item -> view_pager.currentItem = 1
+            else -> view_pager.currentItem = 0
         }
-        try {
-            fragment = fragmentClass.newInstance() as Fragment
-        } catch (e: ClassCastException) {
-            e.printStackTrace()
-        }
-        replaceFragment(fragment)
         drawer_layout.closeDrawer(GravityCompat.START)
     }
 }

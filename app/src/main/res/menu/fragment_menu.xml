@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_action_image2"
         android:title="Second Image" />
 
+    <item
+        android:id="@+id/third_fragment_item"
+        android:icon="@drawable/ic_action_image3"
+        android:title="Third Image" />
+
 </menu>
